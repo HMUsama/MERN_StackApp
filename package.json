@@ -1,0 +1,24 @@
+{
+  "name": "mernstack",
+  "version": "1.0.0",
+  "description": "todoapp",
+  "main": "server.js",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "npm start --prefix client"
+  },
+  "author": "hm usama",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "create-react-app": "^2.1.8",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.20",
+    "node-module": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
+  }
+}
