@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
+import TodoList from './components/TodoList'
 
 import AppNavbar from './components/AppNavbar'
 
@@ -9,6 +10,7 @@ class App extends Component {
     return (
       <div className="App">
       <AppNavbar/>
+      <TodoList/>
       </div>
     );
   }

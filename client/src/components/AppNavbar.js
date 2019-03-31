@@ -11,14 +11,14 @@ import {
 
 class AppNavbar extends Component {
  
-        state={
-            isOpen:false
-        }
-        toggle= () =>{
-            this.setState({
-                isOpen: !this.state.isOpen
-                });
-        }
+    state={
+        isOpen:false
+    }
+    toggle= () =>{
+        this.setState({
+            isOpen: !this.state.isOpen
+            });
+    }
 
   render() {
     return (
@@ -28,20 +28,6 @@ class AppNavbar extends Component {
                 <NavbarBrand href="/">ToDo List</NavbarBrand>
                 <NavbarToggler onClick={this.toggle}/>
                 <Collapse isOpen={this.state.isOpen} navbar>
-                <Nav className="ml-auto" navbar>
-                <NavItem>
-                    <NavLink href="https://portfolio-hmu.firebaseapp.com" target="blanks">
-                    Usama
-                    </NavLink>
-                </NavItem>
-                </Nav>
-                <Nav className="ml-auto" navbar>
-                <NavItem>
-                    <NavLink href="https://portfolio-hmu.firebaseapp.com" target="blanks">
-                    Usama
-                    </NavLink>
-                </NavItem>
-                </Nav>
                 <Nav className="ml-auto" navbar>
                 <NavItem>
                     <NavLink href="https://portfolio-hmu.firebaseapp.com" target="blanks">
