@@ -1,51 +1,47 @@
 import React, { Component } from 'react';
 import { Container, ListGroup,ListGroupItem,Button } from 'reactstrap'
 import { CSSTransition, TransitionGroup} from 'react-transition-group'
-import uuid from 'uuid'
 import '../App.css';
-
+import {connect} from 'react-redux'
+import uuid from 'uuid'
+import { getTodos ,deleteTodos} from '../store/action/TodosAction'
+// import TodoModal from './TodoModal'
+import PropTypes from 'prop-types'
 
 
 
 class TodoList extends Component {
     state={
-        items:[
-            {id:uuid(),name:'Usama'},
-            {id:uuid(),name:'Umer'},
-            {id:uuid(),name:'Raza'},
-        ]
+      // todos:[
+      //       {id:uuid(),name:'Usama'},
+      //       {id:uuid(),name:'Umer'},
+      //       {id:uuid(),name:'Raza'},
+      //   ]
     }
+  componentDidMount(){
+    this.props.getTodos();
+  }
+  componentDidUpdate(){
+    getTodos();
+  }
+  delete=(id)=>{
+    this.props.deleteTodos(id);
+  }
   render() {
+    const {todos} = this.props.todo
+    console.log('STORE---------->',todos)
     return (
       <Container>
-          <Button
-          color="dark"
-          style={{marginBottom:'2rem',marginLeft:'5'}}
-          onClick={()=>{
-              const name = prompt('Enter Item');
-              if(name){
-                  this.setState(state =>({
-                      items:[...state.items,{id:uuid(),name}]
-                  }));
-              }
-          }}
-          >
-          Todo List
-          </Button>
           <ListGroup>
               <TransitionGroup className="shopping-list">
-              {this.state.items.map(({id,name})=>(
-                  <CSSTransition key={id} timeout={500} classNames="fade">
+              {todos.map(({_id,name})=>(
+                  <CSSTransition key={_id} timeout={500} classNames="fade">
                   <ListGroupItem>
                       <Button
                         className="remove-btn"
                         color="danger"
                         size="sm"
-                        onClick={()=>{this.setState(
-                        state =>({
-                                items:state.items.filter(items => items.id !== id)
-                        })
-                        )}}
+                        onClick={this.delete.bind(this,_id)}
                         >&times;</Button>
                       {name}
                   </ListGroupItem>
@@ -53,9 +49,23 @@ class TodoList extends Component {
               ))}
               </TransitionGroup>
           </ListGroup>
+     
       </Container>
     );
   }
 }
 
-export default TodoList;
+TodoList.propTypes = {
+  getTodos: PropTypes.func.isRequired,
+  todo: PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = (state)=>({
+  todo:state.todo
+})
+
+
+export default connect(mapStateToProps, {getTodos,deleteTodos})(TodoList);
+
+// export default TodoList;
