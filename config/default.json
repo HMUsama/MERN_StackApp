@@ -1,0 +1,4 @@
+{
+    "mongonRUI":"mongodb+srv://umer:zaxsza@cluster0-9ixvh.mongodb.net/test?retryWrites=true",
+    "jwtSecret":"sl_myJwtSecret"
+}

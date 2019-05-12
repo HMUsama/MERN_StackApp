@@ -1,28 +1,32 @@
-const express = require('express')
-const mongoose = require('mongoose')
+const express =    require('express')
+const mongoose =   require('mongoose')
 const bodyParser = require('body-parser');
+const config = require('config')
 
-const items = require('./routes/api/items');
+// const items = require('./routes/api/items');
 
 const app  = express();
-
 
 //BodyParser Middleware
 app.use(bodyParser.json());
 
 //DB Config
 
-const db = require('./config/key').mongoURI;
+// const db = require('./config/key').mongoURI;
+const db = config.get('mongoURI');
 
 //connect to mongo
 mongoose
-    .connect(db)
+    .connect(db,{
+        useCreateIndex:true
+    })
     .then(() =>console.log("MongoDB Connect..."))
-    .catch(err =>console.log(err))
+    .catch(err =>console.log("ERROR--------------->>",err))
 
 //Use Routes
-app.use('/api/items',items); 
+app.use('/api/items',require('./routes/api/items')); 
+app.use('/api/users',require('./routes/api/users')); 
 
-    const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 
-    app.listen(port , () =>console.log(`server started on port ${port}`));
+app.listen(port , () =>console.log(`server started on port ${port}`));

@@ -4,7 +4,7 @@ const router = express.Router();
 //router is mini application
 
 // item Model 
-const Item = require('../../model/items');
+const Item = require('../../model/Items');
 
 //@route GET api/items
 //@desc get All Items
