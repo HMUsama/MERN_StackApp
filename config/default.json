@@ -1,4 +1,4 @@
 {
-    "mongonRUI":"mongodb+srv://umer:zaxsza@cluster0-9ixvh.mongodb.net/test?retryWrites=true",
+    "mongoURI":"mongodb+srv://umer:zaxsza@cluster0-u7q58.mongodb.net/test?retryWrites=true",
     "jwtSecret":"sl_myJwtSecret"
 }
