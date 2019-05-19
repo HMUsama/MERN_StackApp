@@ -1,4 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://node:zaxsza@cluster0-lkdr4.mongodb.net/test?retryWrites=true",
+    "mongoURI":"mongodb+srv://Node:zaxsza@cluster0-dehoa.mongodb.net/test?retryWrites=true",
     "jwtSecret":"sl_myJwtSecret"
-}
+}   

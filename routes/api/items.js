@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth')
 
 //router is mini application
 // item Model 
@@ -12,15 +13,16 @@ router.get('/', (req,res)=>{
     .then(items => res.json(items));
 });
 
-//@route POST api/items------>@desc Create An item---->@access Public
-router.post('/', (req,res)=>{
+//@route POST api/items------>@desc Create An item---->@access Private
+router.post('/',auth, (req,res)=>{
     const newItem= new Item({
     name: req.body.name
     });
     newItem.save().then(item =>res.json(item));
 });
+
 //@route DELETE api/items:id------>@desc Delete An item----->@access Public
-router.delete('/:id', (req,res)=>{
+router.delete('/:id',auth, (req,res)=>{
 Item.findById(req.params.id)
 .then(item =>item.remove().then(()=>res.json({success:true})))
 .catch(error =>res.sendStatus(404).json({seccess:false}))

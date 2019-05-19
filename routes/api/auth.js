@@ -3,16 +3,16 @@ const router = express.Router();
 const bcrypt = require('bcryptjs')
 const config = require('config')
 const jwt = require('jsonwebtoken');
+const auth = require('../../middleware/auth')
 
 //router is mini application
 
 // user Model 
 const User = require('../../model/User');
 
-//@route GET api/auth
+//@route Post api/auth
 //@desc auth user
 //@access Public
-
 router.post('/', (req,res)=>{
     const { email,password} = req.body;
 
@@ -24,7 +24,6 @@ router.post('/', (req,res)=>{
     User.findOne({email})
     .then(user=>{
         if(!user) return res.status(400).json({msg:'User Does not exists'})
-
         // validation password
         bcrypt.compare(password,user.password)
         .then(isMatch=>{
@@ -46,8 +45,16 @@ router.post('/', (req,res)=>{
                 }
             )
         })
-
     })
 });
+
+//@route GET api/auth/user
+//@desc Get  user data
+//@access Private
+router.get('/user',auth, (req,res)=>{
+    User.findById(req.user.id)
+    .select('-password')
+    .then(user=>res.json(user));
+})
 
 module.exports = router;
