@@ -8,8 +8,6 @@ import { getTodos ,deleteTodos} from '../store/action/TodosAction'
 // import TodoModal from './TodoModal'
 import PropTypes from 'prop-types'
 
-
-
 class TodoList extends Component {
     state={
       // todos:[
@@ -34,22 +32,24 @@ class TodoList extends Component {
       <Container>
           <ListGroup>
               <TransitionGroup className="shopping-list">
-              {todos.map(({_id,name})=>(
+              {
+                  todos.map(({_id,name})=>(
                   <CSSTransition key={_id} timeout={500} classNames="fade">
-                  <ListGroupItem>
-                      <Button
-                        className="remove-btn"
-                        color="danger"
-                        size="sm"
-                        onClick={this.delete.bind(this,_id)}
-                        >&times;</Button>
-                      {name}
-                  </ListGroupItem>
-                </CSSTransition>
-              ))}
+                    <ListGroupItem>
+                        <Button
+                            className="remove-btn"
+                            color="danger"
+                            size="sm"
+                            onClick={this.delete.bind(this,_id)}
+                            >&times;
+                         </Button>
+                        {name}
+                    </ListGroupItem>
+                  </CSSTransition>
+                ))
+              }
               </TransitionGroup>
           </ListGroup>
-     
       </Container>
     );
   }

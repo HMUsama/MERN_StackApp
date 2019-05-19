@@ -52,7 +52,7 @@ class TodoModal extends Component {
             isOpen={this.state.modal}
             toggle={this.toggle}
             >
-            <ModalHeader toggle={this.toggle}> Add Name OF Student</ModalHeader>
+             <ModalHeader toggle={this.toggle}> Add Name OF Student</ModalHeader>
             <ModalBody>
                 <Form onSubmit={this.onSubmit}>
                     <FormGroup>

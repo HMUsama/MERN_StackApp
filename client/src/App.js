@@ -4,7 +4,7 @@ import './App.css';
 import TodoList from './components/TodoList'
 import AppNavbar from './components/AppNavbar'
 import TodoModal from './components/TodoModal'
-import {Container} from 'reactstrap'
+import { Container } from 'reactstrap'
 
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
         <Container>
           <TodoModal/>
         </Container>
-          <TodoList/>
+        <TodoList/>
       </div>
     );
   }
