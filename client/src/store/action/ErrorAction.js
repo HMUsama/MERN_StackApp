@@ -8,6 +8,7 @@ export const returError = (msg,status,id=null)=>{
         payload:{msg,status,id}
     }
 }
+
 // Clear Error 
 export const clearError = ()=>{
     return {
