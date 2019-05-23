@@ -9,7 +9,7 @@ import {
     REGISTER_FAIL,
 }   from '../const/types'
 import axios from 'axios'
-import {returError} from './ErrorAction'
+import { returError } from './ErrorAction'
 
 
 // check token & load user
@@ -40,14 +40,37 @@ export const loadUser = ()=>( dispatch,getState ) =>{
     })
 }
 
+// Register User
+export const register = ({name , email , password}) => dispatch =>{
+    // Header 
+    const config ={
+        headers :{ "Content-type":"application/json"  }
+    }
+    // Request body 
+    const body = JSON.stringify({name , email , password });
+    axios.post('/api/users',body,config)
+        .then(res=>dispatch({
+            type:REGISTER_SUCCESS,
+            payload:res.data
+        }))
+        .catch(error=>{
+            dispatch(returError(error.response.data,error.response.status,'REGISTER_FAIL'));    
+            dispatch({
+                type:REGISTER_FAIL
+            });
+        })
+}
+
+
+
 // Setup config
 export const tokenConfig = getState =>{
      // Get Token from localstorage
      const token = getState().auth.token;
      // Headers
      const config ={
-         headers :{ "Content-type":"application/json"  }
-     }
+        headers :{ "Content-type":"application/json"  }
+    }
      // if token , add to headers
      if(token){
          config.headers['x-auth-token'] = token;

@@ -12,6 +12,7 @@ export const getTodos =()=> dispatch =>{
     )
 };
 export const addTodos =(todo)=>dispatch=>{
+    debugger
     axios.post('/api/items',todo)
     .then(res=>
         dispatch({
