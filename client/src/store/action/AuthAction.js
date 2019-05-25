@@ -61,8 +61,6 @@ export const register = ({name , email , password}) => dispatch =>{
         })
 }
 
-
-
 // Setup config
 export const tokenConfig = getState =>{
      // Get Token from localstorage
