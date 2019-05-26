@@ -49,7 +49,8 @@ export const register = ({name , email , password}) => dispatch =>{
     // Request body 
     const body = JSON.stringify({name , email , password });
     axios.post('/api/users',body,config)
-        .then(res=>dispatch({
+        .then(res=>
+            dispatch({
             type:REGISTER_SUCCESS,
             payload:res.data
         }))
@@ -60,6 +61,13 @@ export const register = ({name , email , password}) => dispatch =>{
             });
         })
 }
+
+// Logout User
+export const logout =()=>{
+    return {
+        type:LOGOUT_SUCCESS
+    };
+};
 
 // Setup config
 export const tokenConfig = getState =>{

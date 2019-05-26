@@ -13,8 +13,8 @@ import {
         } from 'reactstrap';
 import { connect  } from 'react-redux';
 import { register } from '../../store/action/AuthAction'
-import   PropTypes  from 'prop-types'
 import {clearError} from '../../store/action/ErrorAction'
+import   PropTypes  from 'prop-types'
 
 
 class RegisterModal extends Component {
@@ -31,16 +31,22 @@ class RegisterModal extends Component {
         register:PropTypes.func.isRequired,
         clearError:PropTypes.func.isRequired,
     } 
+
     componentDidUpdate(prevProps){
-        console.log("------------->",prevProps.msg)
+        // console.log("------------->",isAuthenticated)
         console.log("------------->",this.props.error.msg)
         const {error} = this.props
         if(error !== prevProps.error){
             if(error.id === 'REGISTER_FAIL'){
                 this.setState({msg:error.msg.msg})
             }else{
-                this.setState({msg: null })
+                this.setState({msg: null })   // 23:42
             }
+        }
+        if(this.state.modal){
+            // if(isAuthenticated){
+            //     this.toggle();
+            // }
         }
     }
 
