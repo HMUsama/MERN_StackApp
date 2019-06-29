@@ -7,7 +7,6 @@ const config =     require('config')
 // const items = require('./routes/api/items');
 
 const app  = express();
-
 //BodyParser Middleware
 // app.use(bodyParser.json());
 app.use(express.json());
@@ -19,9 +18,8 @@ const db = config.get('mongoURI');
 mongoose.connect(db,{useCreateIndex:true})
         .then(()   =>console.log("MongoDB Connect..."))
         .catch(err =>console.log("ERROR--------------->>",err))
-
 //Use Routes
-app.use('/api/auth',require('./routes/api/auth')); 
+app.use('/api/auth' ,require('./routes/api/auth')); 
 app.use('/api/users',require('./routes/api/users')); 
 app.use('/api/items',require('./routes/api/items')); 
 

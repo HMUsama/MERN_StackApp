@@ -22,7 +22,7 @@ router.post('/', (req,res)=>{
     //check for existing user
     User.findOne({email})
     .then(user=>{
-        if(!user) return res.status(400).json({msg:'User Does not exists'})
+        if(!user) return res.status(400).json({msg:'User Does Not Exists'})
         // validation password
         bcrypt.compare(password,user.password)
         .then(isMatch=>{
@@ -31,7 +31,7 @@ router.post('/', (req,res)=>{
                 {id:user.id},
                 config.get('jwtSecret'),
                 {expiresIn:3600},
-                (err,token)=>{
+                (err,token)=>{ 
                     if(err) throw err;
                     res.json({
                         token,
