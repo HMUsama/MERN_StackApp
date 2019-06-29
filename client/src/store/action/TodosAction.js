@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { GET_TODOS,ADD_TODOS,DELETE_TODOS ,TODOS_LOADING} from '../const/types'
+import { tokenConfig } from './AuthAction'
+import { returError } from './ErrorAction'
 
 export const getTodos =()=> dispatch =>{
    dispatch(setTodosLoading());
@@ -8,27 +10,33 @@ export const getTodos =()=> dispatch =>{
     dispatch({
         type:GET_TODOS,
         payload:res.data
-    })
+     })
     )
+    .catch(error =>dispatch(returError(error.response.data,error.response.status)))
 };
-export const addTodos =(todo)=>dispatch=>{
-    debugger
-    axios.post('/api/items',todo)
+export const addTodos =(todo)=>(dispatch,getState)=>{
+    console.log("ADD_TODOS",todo)
+    axios.post('/api/items',todo,tokenConfig(getState))
     .then(res=>
         dispatch({
             type:ADD_TODOS,
             payload :res.data
         })
         )
+    .catch(error =>dispatch(returError(error.response.data,error.response.status)))
+
 };
 
-export const deleteTodos =(id)=>dispatch=>{
-    axios.delete(`/api/items/${id}`).then(res=>
+export const deleteTodos =(id)=>(dispatch,getState)=>{
+    console.log("DELETE_TODOS",id)
+    axios.delete(`/api/items/${id}`,tokenConfig(getState))
+    .then(res=>
         dispatch({
             type:DELETE_TODOS,
             payload:id
         })
-    );
+    )
+    .catch(error =>dispatch(returError(error.response.data,error.response.status)))
 };
 
 export const setTodosLoading =(id)=>{

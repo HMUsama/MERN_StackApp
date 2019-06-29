@@ -8,7 +8,7 @@ const initialState = {
 export default function(state = initialState,action){
     switch(action.type){
         case GET_TODOS:
-        console.log("Add Todos")
+        console.log("GET_TODOS")
         return{
             ...state,
             todos:action.payload,
@@ -16,14 +16,14 @@ export default function(state = initialState,action){
         }
 
         case ADD_TODOS:
-        console.log("Add Todos",action.payload);
+        console.log("ADD_TODOS",action.payload);
         return {
             ...state,
             todos:[action.payload, ...state.todos]
         }
 
         case DELETE_TODOS:
-        console.log("Delete Todos");
+        console.log("DELETE_TODOS");
         return {
             ...state,
             // todos:state.todos.filter(todo => todo.id !== action.payload) //after db connection
@@ -31,7 +31,7 @@ export default function(state = initialState,action){
         }
      
         case TODOS_LOADING:
-        console.log("Loading Todos");
+        console.log("TODOS_LOADING");
         return {
             ...state,
             loading :true

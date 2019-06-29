@@ -9,6 +9,12 @@ import { getTodos ,deleteTodos} from '../store/action/TodosAction'
 import PropTypes from 'prop-types'
 
 class TodoList extends Component {
+  static propTypes =  {
+    getTodos: PropTypes.func.isRequired,
+    todo: PropTypes.object.isRequired,
+    isAuthentication:PropTypes.bool,
+  }
+  
     state={
       // todos:[
       //       {id:uuid(),name:'Usama'},
@@ -55,14 +61,11 @@ class TodoList extends Component {
   }
 }
 
-TodoList.propTypes = {
-  getTodos: PropTypes.func.isRequired,
-  todo: PropTypes.object.isRequired
-}
 
 
 const mapStateToProps = (state)=>({
-  todo:state.todo
+  todo:state.todo,
+  isAuthentication:state.auth.isAuthentication
 })
 
 

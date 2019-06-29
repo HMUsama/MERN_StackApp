@@ -27,12 +27,14 @@ export default function(state = initialState,action){
         case USER_LOADED:
         return {
             ...state,
+            token:localStorage.getItem('token'),
             isAuthenticated:true,
             isLoading:false,
             user:action.payload
         };
         case LOGIN_SUCCESS:
         case REGISTER_SUCCESS:
+            localStorage.setItem('token',action.payload.token)
         return {
             ...state,
             ...action.payload,
